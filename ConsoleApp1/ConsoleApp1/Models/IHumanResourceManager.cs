@@ -8,12 +8,13 @@ namespace ConsoleApp1.Models
 {
     interface IHumanResourceManager
     {
-        public string Departments { get; set; }
-        void AddDepartment();
-        void GetDepartments();
-        void EditDepartaments();
-        void AddEmployee();
-        void RemoveEmployee();
-        void EditEmploye();
+        Department[] Departments { get; }
+        Employee[] Employees { get; }
+        void AddDepartment(string name);
+        Department GetDepartments();
+        void EditDepartaments(string oldName, string newName);
+        void AddEmployee(string fullname, string position, double salary, string departmentname);
+        void RemoveEmployee(string no, string departmentname);
+        void EditEmploye(string no, string fullname, string position, double salary);
     }
 }
