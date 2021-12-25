@@ -9,6 +9,7 @@ namespace ConsoleApp1.Services
 {
     class HumanResourceManager : IHumanResourceManager
     {
+        public static int EmployeeCount = 0;
         public Department[] Departments => _Departments;
         private Department[] _Departments;
 
@@ -20,40 +21,34 @@ namespace ConsoleApp1.Services
             _Departments = new Department[0];
             _Employees = new Employee[0];
         }
-        public void AddDepartment(string Name)
+        public void AddDepartment(string Name,int workerlimit,double salarylimit)
         {
-            Department Department = new Department(Name);
+            Department Department = new Department(Name,workerlimit,salarylimit);
             Array.Resize(ref _Departments, _Departments.Length + 1);
             _Departments[_Departments.Length - 1] = Department;
         }
-        public Department GetDepartments()
-        {
-            Department Departaments = null;
-            foreach (Department item in _Departments)
-            {
-                Departaments = item;
-            }
-            return Departaments;
-        }
+        public void GetDepartments() { }
         public void EditDepartaments(string oldName, string newName)
         {
-            Department department = null;
-
-            foreach (Department item in _Departments)
+            foreach (Department item in Departments)
             {
-                if (item.Name == oldName)
+                if (item.Name != null && item.Name == oldName)
                 {
-                    department = item;
-                    break;
+                    item.Name = newName;
                 }
             }
-            department.Name = newName;
         }
         public void AddEmployee(string fullname,string position,double salary,string departmentname)
         {
-            Employee Department = new Employee(fullname,position,salary, departmentname);
+            Employee employee = new Employee(fullname,position,salary, departmentname);
             Array.Resize(ref _Employees, _Employees.Length + 1);
-            _Employees[_Employees.Length - 1] = Department;
+            _Employees[_Employees.Length - 1] = employee;
+            EmployeeCount++;
+        }
+        public void GetEmployees() { }
+        public void GetEmployeesByDepartment(string departmentName)
+        {
+           
         }
         public void RemoveEmployee(string no,string departmentname)
         {
@@ -79,6 +74,10 @@ namespace ConsoleApp1.Services
             Employee.FullName = fullname;
             Employee.Position = position;
             Employee.Salary = salary;
+        }
+
+        public void EditEmployeeByNo(string no)
+        {
         }
 
     }

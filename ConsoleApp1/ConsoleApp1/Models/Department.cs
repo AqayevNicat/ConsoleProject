@@ -1,5 +1,4 @@
-﻿using ConsoleApp1.Enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,8 +13,11 @@ namespace ConsoleApp1.Models
         public double SalaryLimit { get; set; }
         public Employee[] Employees { get; }
 
-        public Department(string name)
+        public Department(string name,int workerlimit,double salarylimit)
         {
+            Name = name;
+            WorkerLimit = workerlimit;
+            SalaryLimit = salarylimit;
 
         }
         public void CalcSalaryAverage()

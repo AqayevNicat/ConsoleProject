@@ -1,5 +1,4 @@
-﻿using ConsoleApp1.Enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,28 +22,12 @@ namespace ConsoleApp1.Models
             Count++;
             FullName = fullname;
             DepartmentName = departmentName;
-            if (position.Length < 2)
-            {
-                Position = "Position adini duzgun daxil edin...";
-            }
-            else
-            {
-                Position = position;
-            }
-            
-            if(salary < 250)
-            {
-                Salary = 0;
-            }
-            else
-            {
-                Salary = salary;
-            }
+            Position = position;
+            Salary = salary;
 
-            No =$"{DepartmentName[0]}{ DepartmentName[1]}" + Count;
             Workercount++;
             WorkerNo = Workercount;
-
+            No = $"{DepartmentName[0]}{ DepartmentName[1]}".ToUpper() + Count;
         }
         public override string ToString()
         {
