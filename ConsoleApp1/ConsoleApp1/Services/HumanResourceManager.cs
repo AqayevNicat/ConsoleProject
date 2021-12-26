@@ -43,24 +43,25 @@ namespace ConsoleApp1.Services
             Employee employee = new Employee(fullname,position,salary, departmentname);
             Array.Resize(ref _Employees, _Employees.Length + 1);
             _Employees[_Employees.Length - 1] = employee;
-            EmployeeCount++;
+            EmployeeCount++; 
+
         }
         public void GetEmployees()
         {
-            Employee employe = null;
-            foreach (Employee item in _Employees)
-            {
-                if (item != null)
-                {
-                    employe = item;
-                    break;
-                }
-                employe.No = item.No;
-                employe.FullName = item.FullName;
-                employe.Position = item.Position;
-                employe.Salary = item.Salary;
-                employe.DepartmentName = item.DepartmentName;
-            }
+            //Employee employe = null;
+            //foreach (Employee item in _Employees)
+            //{
+            //    if (item != null)
+            //    {
+            //        employe = item;
+            //        break;
+            //    }
+            //    employe.No = item.No;
+            //    employe.FullName = item.FullName;
+            //    employe.Position = item.Position;
+            //    employe.Salary = item.Salary;
+            //    employe.DepartmentName = item.DepartmentName;
+            //}
         }
         public void GetEmployeesByDepartment(string departmentName)
         {

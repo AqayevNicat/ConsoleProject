@@ -175,20 +175,19 @@ namespace ConsoleApp1
         }
         static void GetEmployees(ref HumanResourceManager humanResourceManager)
         {
+            if (humanResourceManager.Employees.Length <= 0)
+            {
+                Console.WriteLine("Siyahi Bosdur. Once Daxil Edin");
+                return;
+            }
+
             foreach (Employee item in humanResourceManager.Employees)
             {
-                if(item == null)
+                if(item != null)
                 {
-                    item = "";
+                    Console.WriteLine(item);
+                    Console.WriteLine("------------------------------------");
                 }
-                else
-                {
-                    Console.WriteLine($"{item}\n");
-                }
-            }
-            for (int i = 0; i < humanResourceManager.Employees.Length; i++)
-            {
-
             }
             humanResourceManager.GetEmployees();
         }
@@ -206,26 +205,23 @@ namespace ConsoleApp1
             int count = 0;
             foreach (Employee item in humanResourceManager.Employees)
             {
-                if (item.DepartmentName.ToLower() == department.ToLower())
+                if(item != null)
                 {
-                    Console.WriteLine($"Nomresi : {item.No}\n" +
-                                  $"Adi : {item.FullName}\n" +
-                                  $"Position : {item.Position}\n" +
-                                  $"Salary : {item.Salary}\n" +
-                                  $"Department : {item.DepartmentName}\n---------------------");
+                    if (item.DepartmentName.ToLower() == department.ToLower())
+                    {
+                        Console.WriteLine($"{item}\n--------------------");
+                    }
+                    else
+                    {
+                        count++;
+                    }
                 }
-                else
-                {
-                    count++;
-                }
+               
             }
+            
             if (count != 0 && count == humanResourceManager.Employees.Length)
             {
                 Console.WriteLine("Bu adda department yoxdur");
-            }
-            else if (count == 0)
-            {
-                Console.WriteLine("Departamnete isci elave olunmayib");
             }
             humanResourceManager.GetEmployeesByDepartment(department);
         }
@@ -253,8 +249,11 @@ namespace ConsoleApp1
 
             foreach (Employee item in humanResourceManager.Employees)
             {
-                Console.WriteLine(item);
-                Console.WriteLine("------------------------------------");
+                if(item != null)
+                {
+                    Console.WriteLine(item);
+                    Console.WriteLine("------------------------------------");
+                }
             }
             Console.WriteLine("Silmek istediyiniz iscinin nomresini daxil edin : ");
             string no = Console.ReadLine();
@@ -265,7 +264,7 @@ namespace ConsoleApp1
             {
                 foreach (Employee item in humanResourceManager.Employees)
                 {
-                    if (item.No.ToLower() == no.ToLower())
+                    if (item != null && item.No.ToLower() == no.ToLower())
                     {
                         count++;
                     }
@@ -286,7 +285,7 @@ namespace ConsoleApp1
             Console.WriteLine("Silmek istediyiniz iscinin departamentini daxil edin : ");
             string depart = Console.ReadLine();
 
-            humanResourceManager.RemoveEmployee(no,depart);
+            humanResourceManager.RemoveEmployee(no.ToUpper(),depart);
         }
         #endregion
 
@@ -367,7 +366,7 @@ namespace ConsoleApp1
             }
             for (int i = 0; i < humanResourceManager.Departments.Length; i++)
             {
-                    Console.WriteLine($"{i + 1}. {humanResourceManager.Departments[i].Name}");
+                    Console.WriteLine($"{i + 1}. {humanResourceManager.Departments[i]}");
             }
             Console.Write($"Umumi iscilerin sayi : {HumanResourceManager.EmployeeCount}\n");
             humanResourceManager.GetDepartments();

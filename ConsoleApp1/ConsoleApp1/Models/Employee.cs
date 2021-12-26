@@ -36,7 +36,7 @@ namespace ConsoleApp1.Models
                 $"Position : {Position}\n" +
                 $"Salary : {Salary}\n" +
                 $"Department : {DepartmentName}\n" +
-                $"WorkerCount : {WorkerNo}--------------------";
+                $"WorkerCount : {WorkerNo}";
         }
     }
 }
