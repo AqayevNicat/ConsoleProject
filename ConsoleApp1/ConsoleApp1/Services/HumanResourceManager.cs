@@ -30,7 +30,7 @@ namespace ConsoleApp1.Services
         public void GetDepartments() { }
         public void EditDepartaments(string oldName, string newName)
         {
-            foreach (Department item in Departments)
+            foreach (Department item in _Departments)
             {
                 if (item.Name != null && item.Name == oldName)
                 {
@@ -45,40 +45,49 @@ namespace ConsoleApp1.Services
             _Employees[_Employees.Length - 1] = employee;
             EmployeeCount++;
         }
-        public void GetEmployees() { }
+        public void GetEmployees()
+        {
+            Employee employe = null;
+            foreach (Employee item in _Employees)
+            {
+                if (item != null)
+                {
+                    employe = item;
+                    break;
+                }
+                employe.No = item.No;
+                employe.FullName = item.FullName;
+                employe.Position = item.Position;
+                employe.Salary = item.Salary;
+                employe.DepartmentName = item.DepartmentName;
+            }
+        }
         public void GetEmployeesByDepartment(string departmentName)
         {
-           
+            
         }
-        public void RemoveEmployee(string no,string departmentname)
+        public void EditEmploye(string no, string position, double salary)
+        {
+            foreach (Employee item in _Employees)
+            {
+                if(item.No.ToLower() == no.ToLower())
+                {
+                    item.Position = position;
+                    item.Salary = salary;
+                }
+            }
+        }
+        public void RemoveEmployee(string no, string departmentname)
         {
             for (int i = 0; i < _Employees.Length; i++)
             {
-                if(_Employees[i] != null && _Employees[i].No == no && _Employees[i].DepartmentName == departmentname)
+                if (_Employees[i] != null && _Employees[i].No.ToLower() == no.ToLower() && _Employees[i].DepartmentName.ToLower() == departmentname.ToLower())
                 {
                     _Employees[i] = null;
+                    Employee.Count--;
                     return;
                 }
             }
         }
-        public void EditEmploye(string no, string fullname, string position, double salary)
-        {
-            Employee Employee = null;
-            foreach (Employee item in _Employees)
-            {
-                if (item != null && item.No == no)
-                {
-                    Employee = item;
-                }
-            }
-            Employee.FullName = fullname;
-            Employee.Position = position;
-            Employee.Salary = salary;
-        }
-
-        public void EditEmployeeByNo(string no)
-        {
-        }
-
     }
 }

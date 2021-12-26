@@ -14,9 +14,8 @@ namespace ConsoleApp1.Models
         void GetDepartments();
         void EditDepartaments(string oldName, string newName);
         void AddEmployee(string fullname, string position, double salary, string departmentname);
-        void RemoveEmployee(string no, string departmentname);
-        void EditEmploye(string no, string fullname, string position, double salary);
-        void EditEmployeeByNo(string no);
+        //void RemoveEmployee(string no, string departmentname);
+        //void EditEmploye(string no, string position, double salary);
         void GetEmployees();
         void GetEmployeesByDepartment(string departmentName);
     }
